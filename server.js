@@ -13,12 +13,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static HTML page at /
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/api', (req, res) => {
+// GET / → plain text as required by the assignment
+app.get('/', (req, res) => {
   res.send('My Week 2 API!');
 });
+
+// Serve static HTML page at /home
+app.use('/home', express.static(path.join(__dirname, 'public')));
 
 app.post('/user', (req, res) => {
   const { name, email } = req.body;
